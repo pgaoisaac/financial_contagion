@@ -46,8 +46,10 @@ def reproduce_elliott(A):
     theta_list = [.9, .93, .935, .94]
     country_list = ['France', 'Germany', 'Greece', 'Italy', 'Portugal', 'Spain']
 
-    v_0 = np.array([13.13983264, 15.42769874, 0.983974895, 9.839916318, 0.992468619, 7.481171548])
-    p_GDP = np.array([11.61506276, 14.88284519, 1.267782427, 9.20083682, 1, 6.251046025])
+    p_GDP = np.array([11.61506276, 14.88284519, 1.267782427, 9.20083682, 1, 6.251046025]) # corresponds to p1
+    p_08 = np.array([11.98745, 15.27615, 1.468619, 9.65272, 1.058577, 6.698745])
+    v_0 = np.matmul(A, p_08)
+    
     
     for theta in theta_list:
         failure_list = run_cascade(A, np.eye(A.shape[0]), p_GDP, theta, v_0=v_0)
